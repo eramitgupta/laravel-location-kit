@@ -257,18 +257,6 @@ php artisan location-kit:clear-cache
 
 ---
 
-## 📄 License
-
-MIT
-
----
-
-## 👨‍💻 Author
-
-**Amit Gupta**
-
----
-
 ## ⭐ Support
 
 If you like this package, give it a GitHub star.
