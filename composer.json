@@ -1,8 +1,32 @@
 {
     "name": "erag/laravel-location-kit",
     "description": "Laravel data-only countries, states, cities, currencies, timezones, and dial codes for helpers and Blade.",
-    "type": "library",
+    "keywords": [
+        "laravel",
+        "php",
+        "laravel-package",
+        "location",
+        "countries",
+        "states",
+        "cities",
+        "currency",
+        "timezone",
+        "dial-code",
+        "phone-mask",
+        "helpers",
+        "blade",
+        "inertia",
+        "vue",
+        "react"
+    ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Er Amit Gupta",
+            "email": "info.eramitgupta@gmail.com",
+            "homepage": "https://github.com/eramitgupta"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "LaravelLocationKit\\": "src/"
