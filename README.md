@@ -111,8 +111,6 @@ LocationKit::search('india');
 
 ---
 
-## 📚 API Reference
-
 ### Laravel Facade
 
 ```php
@@ -128,6 +126,114 @@ LocationKit::countryOptions();
 LocationKit::stateOptions(string $countryKey);
 LocationKit::cityOptions(string $stateKey);
 ```
+
+
+---
+
+## ⚡ Inertia Support
+
+```js
+page.props.locationKit
+```
+
+---
+
+## 🧩 Override Default Data
+
+You can override bundled package data without editing vendor files.
+
+Create your own files inside:
+
+```txt
+storage/app/location/
+```
+
+Supported files:
+
+```txt
+countries.json
+states.json
+cities.json
+currencies.json
+```
+
+When the same `key` exists, your custom record replaces the default package record.
+
+### 🌍 Override Country Example
+
+```json
+[
+    {
+        "name": "Bharat",
+        "key": "india",
+        "countryCodes": ["91"],
+        "isoCode2": "IN",
+        "isoCode3": "IND"
+    }
+]
+```
+
+### 🗺️ Override States Example
+
+```json
+[
+    {
+        "country": "india",
+        "name": "Gujarat",
+        "key": "gujarat"
+    },
+    {
+        "country": "india",
+        "name": "Maharashtra",
+        "key": "maharashtra"
+    }
+]
+```
+
+### 🏙️ Override Cities Example
+
+```json
+[
+    {
+        "state": "gujarat",
+        "name": "Ahmedabad",
+        "key": "ahmedabad"
+    },
+    {
+        "state": "gujarat",
+        "name": "Surat",
+        "key": "surat"
+    }
+]
+```
+
+### 💱 Override Currency Example
+
+```json
+[
+    {
+        "code": "INR",
+        "name": "Indian Rupee",
+        "symbol": "₹",
+        "decimal_digits": 2,
+        "countries": ["india"]
+    }
+]
+```
+
+### ⚙️ Change Storage Path
+
+```php
+'data' => storage_path('app/location'),
+```
+
+### 🧹 Clear Cache After Update
+
+```bash
+php artisan location-kit:clear-cache
+```
+
+---
 
 ### Vue / React Composable API
 
@@ -362,119 +468,6 @@ export default function App() {
 
     return null
 }
-```
-
----
-
-## ⚡ Inertia Support
-
-```js
-page.props.locationKit
-```
-
----
-
-## 🧩 Override Default Data
-
-You can override bundled package data without editing vendor files.
-
-Create your own files inside:
-
-```txt
-storage/app/location/
-```
-
-Supported files:
-
-```txt
-countries.json
-states.json
-cities.json
-currencies.json
-```
-
-When the same `key` exists, your custom record replaces the default package record.
-
-### 🌍 Override Country Example
-
-```json
-[
-    {
-        "name": "Bharat",
-        "key": "india",
-        "countryCodes": ["91"],
-        "isoCode2": "IN",
-        "isoCode3": "IND"
-    }
-]
-```
-
-### 🗺️ Override States Example
-
-```json
-[
-    {
-        "country": "india",
-        "name": "Gujarat",
-        "key": "gujarat"
-    },
-    {
-        "country": "india",
-        "name": "Maharashtra",
-        "key": "maharashtra"
-    }
-]
-```
-
-### 🏙️ Override Cities Example
-
-```json
-[
-    {
-        "state": "gujarat",
-        "name": "Ahmedabad",
-        "key": "ahmedabad"
-    },
-    {
-        "state": "gujarat",
-        "name": "Surat",
-        "key": "surat"
-    }
-]
-```
-
-### 💱 Override Currency Example
-
-```json
-[
-    {
-        "code": "INR",
-        "name": "Indian Rupee",
-        "symbol": "₹",
-        "decimal_digits": 2,
-        "countries": ["india"]
-    }
-]
-```
-
-### ⚙️ Change Storage Path
-
-```php
-'data' => storage_path('app/location'),
-```
-
-### 🧹 Clear Cache After Update
-
-```bash
-php artisan location-kit:clear-cache
-```
-
----
-
-## 🧹 Clear Cache
-
-```bash
-php artisan location-kit:clear-cache
 ```
 
 ---
