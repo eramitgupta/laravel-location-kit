@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Erag\\LocationKit\\": "src/"
+            "LaravelLocationKit\\": "src/"
         },
         "files": [
             "src/Support/Helpers.php"
@@ -22,10 +22,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Erag\\LocationKit\\LocationKitServiceProvider"
+                "LaravelLocationKit\\LocationKitServiceProvider"
             ],
             "aliases": {
-                "LocationKit": "Erag\\LocationKit\\Facades\\LocationKit"
+                "LocationKit": "LaravelLocationKit\\Facades\\LocationKit"
             }
         }
     },
