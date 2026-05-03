@@ -4,6 +4,9 @@
 
 Built for modern Laravel applications using Laravel + Inertia + Vue / React.
 
+<img width="2940" height="2619" alt="image" src="https://github.com/user-attachments/assets/a6414d64-4d7f-4431-930d-687cea40f688" />
+
+
 ---
 
 ## ✨ Features
