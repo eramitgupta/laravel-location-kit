@@ -1,8 +1,8 @@
 <?php
 
-namespace Erag\LocationKit\Actions;
+namespace LaravelLocationKit\Actions;
 
-use Erag\LocationKit\Support\LocationData;
+use LaravelLocationKit\Support\LocationData;
 
 class SearchLocations
 {

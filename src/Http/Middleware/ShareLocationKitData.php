@@ -1,12 +1,12 @@
 <?php
 
-namespace Erag\LocationKit\Http\Middleware;
+namespace LaravelLocationKit\Http\Middleware;
 
 use Closure;
-use Erag\LocationKit\Facades\LocationKit;
-use Erag\LocationKit\Support\LocationData;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use LaravelLocationKit\Facades\LocationKit;
+use LaravelLocationKit\Support\LocationData;
 
 class ShareLocationKitData
 {

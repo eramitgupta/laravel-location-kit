@@ -1,6 +1,6 @@
 <?php
 
-namespace Erag\LocationKit\Support;
+namespace LaravelLocationKit\Support;
 
 use Closure;
 use Illuminate\Support\Facades\Cache;

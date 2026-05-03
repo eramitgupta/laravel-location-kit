@@ -1,6 +1,6 @@
 <?php
 
-namespace Erag\LocationKit\Commands;
+namespace LaravelLocationKit\Commands;
 
 use Illuminate\Console\Command;
 

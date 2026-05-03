@@ -1,6 +1,6 @@
 <?php
 
-namespace Erag\LocationKit\Facades;
+namespace LaravelLocationKit\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

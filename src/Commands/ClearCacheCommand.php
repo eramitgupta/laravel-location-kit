@@ -1,9 +1,9 @@
 <?php
 
-namespace Erag\LocationKit\Commands;
+namespace LaravelLocationKit\Commands;
 
-use Erag\LocationKit\Actions\ClearLocationCache;
 use Illuminate\Console\Command;
+use LaravelLocationKit\Actions\ClearLocationCache;
 
 class ClearCacheCommand extends Command
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Erag\LocationKit\Actions;
+namespace LaravelLocationKit\Actions;
 
-use Erag\LocationKit\Options\DialCodeOption;
 use Illuminate\Support\Collection;
+use LaravelLocationKit\Options\DialCodeOption;
 
 class GetDialCodes
 {

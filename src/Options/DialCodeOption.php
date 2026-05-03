@@ -1,6 +1,6 @@
 <?php
 
-namespace Erag\LocationKit\Options;
+namespace LaravelLocationKit\Options;
 
 class DialCodeOption
 {

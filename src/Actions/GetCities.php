@@ -1,10 +1,10 @@
 <?php
 
-namespace Erag\LocationKit\Actions;
+namespace LaravelLocationKit\Actions;
 
-use Erag\LocationKit\Support\LocationCache;
-use Erag\LocationKit\Support\LocationData;
 use Illuminate\Support\Collection;
+use LaravelLocationKit\Support\LocationCache;
+use LaravelLocationKit\Support\LocationData;
 
 class GetCities
 {

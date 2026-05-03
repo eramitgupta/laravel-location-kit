@@ -1,14 +1,14 @@
 <?php
 
-namespace Erag\LocationKit;
+namespace LaravelLocationKit;
 
-use Erag\LocationKit\Commands\ClearCacheCommand;
-use Erag\LocationKit\Commands\InstallCommand;
-use Erag\LocationKit\Http\Middleware\ShareLocationKitData;
-use Erag\LocationKit\Support\BladeDirectives;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
+use LaravelLocationKit\Commands\ClearCacheCommand;
+use LaravelLocationKit\Commands\InstallCommand;
+use LaravelLocationKit\Http\Middleware\ShareLocationKitData;
+use LaravelLocationKit\Support\BladeDirectives;
 
 class LocationKitServiceProvider extends ServiceProvider
 {

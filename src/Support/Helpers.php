@@ -1,6 +1,6 @@
 <?php
 
-use Erag\LocationKit\Facades\LocationKit;
+use LaravelLocationKit\Facades\LocationKit;
 
 if (! function_exists('location_countries')) {
     function location_countries(): array

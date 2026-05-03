@@ -1,18 +1,18 @@
 <?php
 
-namespace Erag\LocationKit;
+namespace LaravelLocationKit;
 
-use Erag\LocationKit\Actions\GetCities;
-use Erag\LocationKit\Actions\GetCountries;
-use Erag\LocationKit\Actions\GetCurrencies;
-use Erag\LocationKit\Actions\GetDialCodes;
-use Erag\LocationKit\Actions\GetStates;
-use Erag\LocationKit\Actions\GetTimezones;
-use Erag\LocationKit\Actions\SearchLocations;
-use Erag\LocationKit\Options\CityOption;
-use Erag\LocationKit\Options\CountryOption;
-use Erag\LocationKit\Options\StateOption;
 use Illuminate\Support\Collection;
+use LaravelLocationKit\Actions\GetCities;
+use LaravelLocationKit\Actions\GetCountries;
+use LaravelLocationKit\Actions\GetCurrencies;
+use LaravelLocationKit\Actions\GetDialCodes;
+use LaravelLocationKit\Actions\GetStates;
+use LaravelLocationKit\Actions\GetTimezones;
+use LaravelLocationKit\Actions\SearchLocations;
+use LaravelLocationKit\Options\CityOption;
+use LaravelLocationKit\Options\CountryOption;
+use LaravelLocationKit\Options\StateOption;
 
 class LocationKit
 {
