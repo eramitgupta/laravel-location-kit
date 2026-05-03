@@ -98,7 +98,7 @@ City dataset is large, so it is disabled by default for better performance.
 ### Facade
 
 ```php
-use Erag\LocationKit\Facades\LocationKit;
+use LaravelLocationKit\Facades\LocationKit;
 
 LocationKit::countries();
 LocationKit::states('india');
@@ -371,7 +371,7 @@ Route::get('/location-kit-example', [LocationKitExampleController::class, 'index
 
 namespace App\Http\Controllers;
 
-use Erag\LocationKit\Facades\LocationKit;
+use LaravelLocationKit\Facades\LocationKit;
 use Inertia\Inertia;
 use Inertia\Response;
 
