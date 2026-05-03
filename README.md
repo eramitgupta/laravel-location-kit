@@ -298,7 +298,7 @@ location_dial_codes();
 ```vue
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { useLocationKit } from './vendor/erag/laravel-location-kit/vue'
+import { useLocationKit } from '@erag/laravel-location-kit/vue'
 
 const selectedCountry = ref('india')
 const phone = ref('9876543210')
@@ -438,7 +438,7 @@ defineProps({
 ## 💚 Vue Usage
 
 ```ts
-import { useLocationKit } from './vendor/erag/laravel-location-kit/vue'
+import { useLocationKit } from '@erag/laravel-location-kit/vue'
 
 const {
     countries,
@@ -456,7 +456,7 @@ const {
 ## ⚛️ React Usage
 
 ```tsx
-import { useLocationKit } from './vendor/erag/laravel-location-kit/react'
+import { useLocationKit } from '@erag/laravel-location-kit/vue'
 
 export default function App() {
     const {
