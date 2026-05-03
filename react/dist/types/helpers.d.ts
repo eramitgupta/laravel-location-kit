@@ -1,0 +1,11 @@
+import type { LocationCity, LocationCountry, LocationDialCode, LocationKey, LocationState } from './location';
+export declare function normalizeKey(value: LocationKey): string;
+export declare function statesForCountry(states: LocationState[] | undefined, countryKey: LocationKey): LocationState[];
+export declare function citiesForState(cities: LocationCity[] | undefined, stateKey: LocationKey): LocationCity[];
+export declare function findCountry(countries: LocationCountry[] | undefined, countryKey: LocationKey): LocationCountry | undefined;
+export declare function callingCodeForCountry(countries: LocationCountry[] | undefined, countryKey: LocationKey): string | null;
+export declare function phoneLengthsForCountry(countries: LocationCountry[] | undefined, countryKey: LocationKey): number[];
+export declare function phoneMaxLengthForCountry(countries: LocationCountry[] | undefined, countryKey: LocationKey): number | null;
+export declare function localPhoneDigitsForCountry(countries: LocationCountry[] | undefined, countryKey: LocationKey, value: string): string;
+export declare function findDialCode(dialCodes: LocationDialCode[] | undefined, countryKey: LocationKey): LocationDialCode | undefined;
+export declare function maskPhoneForCountry(countries: LocationCountry[] | undefined, countryKey: LocationKey, value: string): string;
