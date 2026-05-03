@@ -251,7 +251,7 @@ php artisan location-kit:clear-cache
 ## 📌 Requirements
 
 * PHP 8.2+
-* Laravel 10 / 11 / 12
+* Laravel 10 / 11 / 12 / 13
 * Inertia.js (Optional)
 * Vue / React (Optional)
 
