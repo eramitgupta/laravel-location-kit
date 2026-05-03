@@ -1,6 +1,6 @@
 # 🌍 Laravel Location Kit
 
-`erag/laravel-location-kit` is a complete Laravel location data package that provides countries, states, cities, currencies, timezones, and dial codes with Laravel helpers, Blade directives, Inertia support, Vue composables, and React hooks.
+`erag/laravel-location-kit` is a complete Laravel location data package for countries, states, cities, currencies, timezones, and dial codes with Laravel helpers, Blade directives, Inertia support, Vue composables, and React hooks.
 
 Built for modern Laravel applications using Laravel + Inertia + Vue / React.
 
@@ -14,6 +14,7 @@ Built for modern Laravel applications using Laravel + Inertia + Vue / React.
 - 💱 162 Currencies
 - 🕒 419 Timezones
 - 📞 Country Dial Codes
+- 📱 Phone Mask Support
 - 🛠️ Laravel Facade Support
 - 🌐 Global Helper Functions
 - 🎨 Blade Directives
@@ -28,24 +29,20 @@ Built for modern Laravel applications using Laravel + Inertia + Vue / React.
 
 ## 📦 Installation
 
-## Laravel Package
+### Laravel Package
 
 ```bash
 composer require erag/laravel-location-kit
 php artisan erag:install-location-kit
 ````
 
----
-
-## 🎯 Frontend Packages (Local Vendor Install)
-
-## 💚 Vue
+### 💚 Vue
 
 ```bash
 npm install ./vendor/erag/laravel-location-kit/vue
 ```
 
-## ⚛️ React
+### ⚛️ React
 
 ```bash
 npm install ./vendor/erag/laravel-location-kit/react
@@ -88,9 +85,7 @@ Timezones : 419
 
 ## 🚀 Why Cities Disabled by Default?
 
-City dataset is large for performance optimization.
-
-Enable only when needed.
+City dataset is large, so it is disabled by default for better performance.
 
 ```php
 'cities' => true
@@ -100,7 +95,7 @@ Enable only when needed.
 
 ## 🛠️ Laravel Usage
 
-## Facade
+### Facade
 
 ```php
 use Erag\LocationKit\Facades\LocationKit;
@@ -112,6 +107,39 @@ LocationKit::currencies();
 LocationKit::timezones();
 LocationKit::dialCodes();
 LocationKit::search('india');
+```
+
+---
+
+## 📚 API Reference
+
+### Laravel Facade
+
+```php
+LocationKit::countries();
+LocationKit::states(?string $countryKey = null);
+LocationKit::cities(?string $stateKey = null);
+LocationKit::currencies();
+LocationKit::timezones();
+LocationKit::dialCodes();
+LocationKit::search(string $query, int $limit = 10);
+
+LocationKit::countryOptions();
+LocationKit::stateOptions(string $countryKey);
+LocationKit::cityOptions(string $stateKey);
+```
+
+### Vue / React Composable API
+
+```ts
+countries
+statesForCountry(countryKey)
+citiesForState(stateKey)
+findCountry(countryKey)
+callingCodeForCountry(countryKey)
+phoneMaxLength(countryKey)
+localPhoneDigits(countryKey, value)
+maskPhone(countryKey, value)
 ```
 
 ---
@@ -157,21 +185,151 @@ location_dial_codes();
 
 ---
 
-## 🧾 Example Select Dropdown
+## 📱 Phone Mask Example
 
-```blade
-<select name="country">
-    @foreach(location_countries() as $country)
-        <option value="{{ $country['value'] }}">
-            {{ $country['label'] }}
-        </option>
-    @endforeach
-</select>
+### Vue
+
+```vue
+<script setup lang="ts">
+import { computed, ref, watch } from 'vue'
+import { useLocationKit } from './vendor/erag/laravel-location-kit/vue'
+
+const selectedCountry = ref('india')
+const phone = ref('9876543210')
+
+const locationKit = useLocationKit()
+
+const dialCode = computed(() =>
+    locationKit.callingCodeForCountry(selectedCountry.value)
+)
+
+const maxLength = computed(() =>
+    locationKit.phoneMaxLength(selectedCountry.value)
+)
+
+const maskedPhone = computed(() =>
+    locationKit.maskPhone(selectedCountry.value, phone.value)
+)
+
+watch(phone, (value) => {
+    const digits = locationKit.localPhoneDigits(selectedCountry.value, value)
+
+    if (value !== digits) {
+        phone.value = digits
+    }
+})
+</script>
+
+<template>
+    <div class="space-y-3">
+        <input
+            v-model="phone"
+            inputmode="numeric"
+            :maxlength="maxLength ?? undefined"
+            class="h-10 w-full rounded border px-3"
+            placeholder="Enter phone number"
+        />
+
+        <div class="rounded border px-3 py-2">
+            <div>Dial Code: {{ dialCode }}</div>
+            <div>Masked Phone: {{ maskedPhone }}</div>
+        </div>
+    </div>
+</template>
+```
+
+### Output
+
+```txt
+Input : 9876543210
+Output: +91 98765 43210
 ```
 
 ---
 
-# 💚 Vue Usage
+## ⚡ Short Laravel + Inertia Example
+
+### Route
+
+```php
+use App\Http\Controllers\LocationKitExampleController;
+
+Route::get('/location-kit-example', [LocationKitExampleController::class, 'index'])
+    ->name('location-kit.example');
+```
+
+### Controller
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Erag\LocationKit\Facades\LocationKit;
+use Inertia\Inertia;
+use Inertia\Response;
+
+class LocationKitExampleController extends Controller
+{
+    public function index(): Response
+    {
+        return Inertia::render('LocationKitExample', [
+            'countries' => LocationKit::countryOptions(),
+            'states' => LocationKit::stateOptions('india'),
+            'cities' => LocationKit::cityOptions('gujarat'),
+        ]);
+    }
+}
+```
+
+### Vue Page
+
+```vue
+<script setup lang="ts">
+defineProps({
+    countries: Array,
+    states: Array,
+    cities: Array,
+})
+</script>
+
+<template>
+    <div class="space-y-4 p-6">
+        <h1 class="text-2xl font-bold">🌍 Location Kit Example</h1>
+
+        <select class="h-10 w-full rounded border px-3">
+            <option
+                v-for="country in countries"
+                :key="country.value"
+            >
+                {{ country.label }}
+            </option>
+        </select>
+
+        <select class="h-10 w-full rounded border px-3">
+            <option
+                v-for="state in states"
+                :key="state.value"
+            >
+                {{ state.label }}
+            </option>
+        </select>
+
+        <select class="h-10 w-full rounded border px-3">
+            <option
+                v-for="city in cities"
+                :key="city.value"
+            >
+                {{ city.label }}
+            </option>
+        </select>
+    </div>
+</template>
+```
+
+---
+
+## 💚 Vue Usage
 
 ```ts
 import { useLocationKit } from './vendor/erag/laravel-location-kit/vue'
@@ -181,19 +339,26 @@ const {
     statesForCountry,
     citiesForState,
     callingCodeForCountry,
+    phoneMaxLength,
+    localPhoneDigits,
     maskPhone,
 } = useLocationKit()
 ```
 
 ---
 
-# ⚛️ React Usage
+## ⚛️ React Usage
 
 ```tsx
 import { useLocationKit } from './vendor/erag/laravel-location-kit/react'
 
 export default function App() {
-    const { countries } = useLocationKit()
+    const {
+        countries,
+        statesForCountry,
+        citiesForState,
+        maskPhone,
+    } = useLocationKit()
 
     return null
 }
@@ -203,8 +368,6 @@ export default function App() {
 
 ## ⚡ Inertia Support
 
-Shared automatically in:
-
 ```js
 page.props.locationKit
 ```
@@ -213,17 +376,97 @@ page.props.locationKit
 
 ## 🧩 Override Default Data
 
+You can override bundled package data without editing vendor files.
+
+Create your own files inside:
+
 ```txt
 storage/app/location/
 ```
 
-Files:
+Supported files:
 
 ```txt
 countries.json
 states.json
 cities.json
 currencies.json
+```
+
+When the same `key` exists, your custom record replaces the default package record.
+
+### 🌍 Override Country Example
+
+```json
+[
+    {
+        "name": "Bharat",
+        "key": "india",
+        "countryCodes": ["91"],
+        "isoCode2": "IN",
+        "isoCode3": "IND"
+    }
+]
+```
+
+### 🗺️ Override States Example
+
+```json
+[
+    {
+        "country": "india",
+        "name": "Gujarat",
+        "key": "gujarat"
+    },
+    {
+        "country": "india",
+        "name": "Maharashtra",
+        "key": "maharashtra"
+    }
+]
+```
+
+### 🏙️ Override Cities Example
+
+```json
+[
+    {
+        "state": "gujarat",
+        "name": "Ahmedabad",
+        "key": "ahmedabad"
+    },
+    {
+        "state": "gujarat",
+        "name": "Surat",
+        "key": "surat"
+    }
+]
+```
+
+### 💱 Override Currency Example
+
+```json
+[
+    {
+        "code": "INR",
+        "name": "Indian Rupee",
+        "symbol": "₹",
+        "decimal_digits": 2,
+        "countries": ["india"]
+    }
+]
+```
+
+### ⚙️ Change Storage Path
+
+```php
+'data' => storage_path('app/location'),
+```
+
+### 🧹 Clear Cache After Update
+
+```bash
+php artisan location-kit:clear-cache
 ```
 
 ---
@@ -236,27 +479,19 @@ php artisan location-kit:clear-cache
 
 ---
 
-## 🎯 Best For
-
-* 🏢 SaaS Projects
-* CRM Systems
-* 🛒 Ecommerce Checkout
-* 📝 Registration Forms
-* 📍 Address Forms
-* 📞 Phone Input Forms
-* 🌎 Multi-country Apps
-
----
-
 ## 📌 Requirements
 
 * PHP 8.2+
 * Laravel 10 / 11 / 12 / 13
-* Inertia.js (Optional)
-* Vue / React (Optional)
+* Inertia.js Optional
+* Vue / React Optional
 
 ---
 
 ## ⭐ Support
 
 If you like this package, give it a GitHub star.
+
+
+<img width="2940" height="2619" alt="image" src="https://github.com/user-attachments/assets/a6414d64-4d7f-4431-930d-687cea40f688" />
+
