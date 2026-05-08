@@ -31,8 +31,6 @@ Built for modern Laravel applications using Laravel + Inertia + Vue / React.
 
 - 🧱 Class-based Custom Location Data (Country, State, City, Currency) 
 - ➕ Register Custom Data via Classes  
-- 🔄 Merge Class Data with JSON Sources  
-- ⚙️ Config-driven Class Mapping  
 - 🔌 Support for Multiple Data Sources (Class + JSON) 
 
 ---
